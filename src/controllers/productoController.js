@@ -2,18 +2,21 @@
 const model = require('../models/productoModel');
 
 async function getPedidos(req, res) {
-    const getGallery = await model.listPedidos;
-    res.status(200).json(getGallery);
+    console.log("aqui estamos")
+    const getPedidos = await model().listPedidos();
+    res.status(200).json(getpedidos);
 
 }
+
+
 async function getPedido(req, res) {
-    const getGallery = await model.listPedido;
-    res.status(200).json(getGallery);
+    const getpedido = await model().listPedido();
+    res.status(200).json(getpedido);
 
 }
 async function getPedidoProduct(req, res) {
-    const getGallery = await model.listPedidoProduct;
-    res.status(200).json(getGallery);
+    const getpedido = await model().listPedidoProduct();
+    res.status(200).json(getpedido);
 
 }
 
@@ -25,7 +28,7 @@ async function modifyPedido(req, res) {
         req.body.Fk_idUsuario,
         req.body.Fk_idProducto,
     ]
-    await model.modifyPedido(data, id);
+    await model().modifyPedido(data, id);
     res.status(200).json({
         succes:1,
         message: "Modificado con exito"
