@@ -41,7 +41,7 @@ module.exports = function() {
         Img= data[2];
         Fk_idUser= data[3];
         console.log(Text, Time, Fk_idUser, Img, id);
-        await db.query('UPDATE pedido SET Text= ?, Time= ?, Img= ?, Fk_idUser= ? WHERE idGallery = ?', [CodPedido, Fk_idUsuario, Fk_idProducto, id]);
+        await db.query('UPDATE pedido SET CodPedido= ?, Fk_idUsuario= ?, Fk_idProducto= ? WHERE idPedido = ?', [CodPedido, Fk_idUsuario, Fk_idProducto, id]);
     
        
     }
