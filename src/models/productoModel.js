@@ -1,8 +1,9 @@
 'use strict'
+const passport = require('passport');
 const db = require('../database');
+const helpers = require('../lib/helpers');
 
 module.exports = function() {
-
     async function listPedidos(req) {
         let query = `SELECT  pe.CodPedido AS Codigo, u.username AS Usuario, pr.nombre AS Producto, pr.precio AS Precio
         FROM pedido pe, usuario u, producto pr
@@ -11,6 +12,8 @@ module.exports = function() {
         const data = await db.query(query)
         return data
     }
+      
+
     async function listPedido(req) {
         let query = `SELECT  pe.CodPedido AS Codigo, u.username AS Usuario, pr.nombre AS Producto, pr.precio AS Precio
         FROM pedido pe, usuario u, producto pr
@@ -29,18 +32,15 @@ module.exports = function() {
     }
     async function modifyPedido(data, id, req,  res){
             
-        var  Text= '';
-        var  Time= '';
-        var  Img= '';
-        var  Fk_idUser= '';
+        var  CodPedido= '';
+        var  Fk_idUsuario= '';
+        var  Fk_idProducto= '';
     
         
     
-        Text= data[0];
-        Time= data[1];
-        Img= data[2];
-        Fk_idUser= data[3];
-        console.log(Text, Time, Fk_idUser, Img, id);
+        CodPedido= data[0];
+        Fk_idUsuario= data[1];
+        Fk_idProducto= data[2];
         await db.query('UPDATE pedido SET CodPedido= ?, Fk_idUsuario= ?, Fk_idProducto= ? WHERE idPedido = ?', [CodPedido, Fk_idUsuario, Fk_idProducto, id]);
     
        
@@ -60,6 +60,8 @@ module.exports = function() {
     }
 
 }
+
+
 
 
 
